@@ -11,16 +11,16 @@ const
 const 
 {
     Update,
-    // Delete,
-    // aUser,
-    // allUser,
-    // Stats,
+    Delete,
+    aUser,
+    allUser,
+    Stats,
 } = require("../controllers/user");
 
 router.put("/:id", verifyTokenAndAuthorization, Update);
-// router.delete("/:id", verifyTokenAndAuthorization, Delete);
-// router.get("/find/:id", verifyTokenAndAdmin, aUser);
-// router.get("/", verifyTokenAndAdmin, allUser);
-// router.get("/stats", verifyTokenAndAdmin, Stats);
+router.delete("/:id", verifyTokenAndAuthorization, Delete);
+router.get("/find/:id", verifyTokenAndAdmin, aUser);
+router.get("/", verifyTokenAndAdmin, allUser);
+router.get("/stats", verifyTokenAndAdmin, Stats);
 
 module.exports = router;

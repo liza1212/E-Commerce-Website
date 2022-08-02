@@ -1,5 +1,4 @@
 const { StatusCodes } = require("http-status-codes");
-const { BadRequestError, NotFoundError }= require("../errors");
 const user = require("../models/user");
 
 //UPDATE
@@ -17,15 +16,17 @@ const Update = async( req,res )=>{
 
 //DELETE
 const Delete = async( req,res )=>{
-    await user.findOneAndDelete(req.params.id);
+    const {id:userId} = req.params;
+    await user.findOneAndDelete(userId);
     res.status(StatusCodes.OK).json("User has been deleted...");
 };
 
 //GET USER
 const aUser = async( req,res )=>{
-    const User = await user.findById(req.params.id);
-    const { password, ...others } = User._doc;
-    res.status(StatusCodes.OK).json(others);
+    const {id:userId} = req.params;
+    const User = await user.findById(userId);
+    // const { password, ...others } = User._doc;
+    res.status(StatusCodes.OK).json(User);
 }
 
 //GET ALL USER
