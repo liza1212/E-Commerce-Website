@@ -12,6 +12,7 @@ const app = express();
 const connectDB = require("./database/connect");
 //router 
 const authRouter = require("./routes/auth");
+const userRouter = require("./routes/user");
 //error handling middlewares
 const notFoundMiddleware = require("./middlewares/not-found");
 const errorHandlerMiddleware = require("./middlewares/error-handler");
@@ -32,6 +33,7 @@ app.use(xss());
 
 //routes
 app.use("/api/auth", authRouter);
+app.use("/api/users", userRouter);
 
 
 //error handlers

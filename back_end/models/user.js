@@ -43,9 +43,17 @@ UserSchema.pre("save", async function(){
     this.password = await bcrypt.hash(this.password,salt);
 });
 
+UserSchema.pre("findOneAndUpdate", async function(){
+    if( this._update.$set.password )
+    {
+        const salt = await bcrypt.genSalt(10);
+        this._update.$set.password = await bcrypt.hash(this._update.$set.password,salt);
+    }
+});
+
 UserSchema.methods.createJWT = function () {
     return jwt.sign(
-        { userId: this._id, name: this.name },
+        { userId: this._id, isAdmin: this.isAdmin },
         process.env.JWT_SECRET,
         {
             expiresIn: process.env.JWT_LIFETIME,
