@@ -25,8 +25,8 @@ const Delete = async( req,res )=>{
 const aUser = async( req,res )=>{
     const {id:userId} = req.params;
     const User = await user.findById(userId);
-    // const { password, ...others } = User._doc;
-    res.status(StatusCodes.OK).json(User);
+    const { password, ...others } = User._doc;
+    res.status(StatusCodes.OK).json(others);
 }
 
 //GET ALL USER
