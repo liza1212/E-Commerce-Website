@@ -13,17 +13,27 @@ const Container=styled.div`
 
 const Products = ({cat, filter}) => {
     //cat stands for the sevices and filter stands for the company
+    console.log("Reached inside Products.jsx comp");
+    console.log(cat);
+    
+    console.log(filter);
     const [product, setproduct] = useState([]);
     const [filteredProducts, setfilteredProducts] = useState([]);
     useEffect(() => {
       const getProducts=async()=>{
             try{
-                const res=await axios.get(cat?`http://localhost:8000/api/products?category=${cat}`
-                :`http://localhost:8000/api/products`
-                );
-                setproduct(res.data)
+                const res=await axios.get(
+                  cat
+                  ?`http://localhost:8000/api/products?category=${cat}`
+                :"http://localhost:8000/api/products"
+                );  
+                setproduct(res.data);
+                console.log(res.data);
+                console.log("Reached here!");
             }
-            catch(err){}
+            catch(err){
+              console.log("ERRORRR");
+            }
       };
       getProducts()
     }, [cat]);
@@ -37,7 +47,6 @@ const Products = ({cat, filter}) => {
           )
         )
     }, [product,cat,filter])
-    
 
   return (
     <Container>

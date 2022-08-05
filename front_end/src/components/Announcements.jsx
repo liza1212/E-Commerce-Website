@@ -12,6 +12,7 @@ const Container = styled.div`
     font-weight: 500;
     padding-top: 1px;
 `
+
 const Announcements = () => {
   return (
     <Container>Get 10% off on all our services.</Container>
