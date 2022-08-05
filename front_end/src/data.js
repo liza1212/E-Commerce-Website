@@ -48,7 +48,7 @@ export const popularSkincare =[
     },
     {
         id:2,
-        des: "WEBSITE DEVELOPMENT",
+        des: "WEBSITE",
         img:"https://static.vecteezy.com/system/resources/previews/009/368/851/non_2x/data-analytics-graphs-dashboard-bitcoins-digital-cryptocurrency-and-business-finance-report-investment-or-stock-market-website-seo-concept-3d-illustrations-png.png"
     },
     {
@@ -58,7 +58,7 @@ export const popularSkincare =[
     },
     {
         id:4,
-        des: "GRAPHICS DESIGN",
+        des: "FLYERS",
         img:"https://static.vecteezy.com/system/resources/previews/008/494/451/non_2x/isolated-two-white-poster-with-clips-free-png.png"
     },
     {
@@ -68,8 +68,8 @@ export const popularSkincare =[
     },
     {
         id:6,
-        des: "NETWORK SECURITY",
-        img:"https://static.vecteezy.com/system/resources/previews/009/351/355/non_2x/online-shop-ecommerce-website-store-png.png"
+        des: "EMAIL SOLUTIONS",
+        img:"https://static.vecteezy.com/system/resources/previews/008/506/465/non_2x/message-envelope-icon-3d-illustration-free-png.png"
     },
     {
         id:7,

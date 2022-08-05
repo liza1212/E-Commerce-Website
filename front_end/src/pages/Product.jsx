@@ -6,7 +6,6 @@ import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import Newsletter from "../components/Newsletter"
 import { mobile } from "../responsive"
-
 const Container=styled.div`
 
 `
@@ -40,11 +39,48 @@ const Title=styled.h1`
 
 const Desc=styled.p`
     margin: 20px 0px; 
-    padding-bottom: 80px;
 `
 
+const Price=styled.span`
+    font-weight: 100;
+    font-size: 40px;
+`
+const FilterContainer=styled.div`
+    display:flex;
+    margin: 30px 0px;
+    width: 50%;
+    justify-content: space-between;
+     ${mobile({width: "100%"})}
+`
+
+const Filter=styled.div`
+    display: flex;
+    align-items: center;
+`
+
+const FilterTitle=styled.span`
+    font-size: 20px;
+    font-weight: 200;
+`
+
+const FilterColor=styled.div`
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: ${props=> props.color};
+    margin: 0px 5px;
+    cursor: pointer;
+`
+
+const FilterSize=styled.select`
+    margin-left: 10px;
+    padding: 5px;
+`
+
+const FilterSizeOption=styled.option`
+
+`
 const AddContainer=styled.div`
-    /* padding-left: 50px; */
     width:50%;
     display: flex;
     align-items: center;
@@ -84,6 +120,7 @@ const Button=styled.button`
     }
 `
 
+
 const Product = () => {
   return (
     <Container>
@@ -98,6 +135,22 @@ const Product = () => {
                 <Desc>Why is a logo important? Because it grabs attention, makes a strong first impression, is the foundation of your brand identity, is memorable, separates you from competition, fosters brand loyalty, and is expected by your audience. 
                     With aurora building a logo is just one step away.
                 </Desc>
+                <Price>Rs. 3000</Price>
+                <FilterContainer>
+                    <Filter>
+                        <FilterTitle>Quantity</FilterTitle>
+                        <FilterColor color="black"/>
+                        <FilterColor color="blue"/>
+                        <FilterColor color="red"/>
+                        <FilterTitle>Type</FilterTitle>
+                            <FilterSize>
+                                <FilterSizeOption>png</FilterSizeOption>
+                                <FilterSizeOption>jpeg</FilterSizeOption>
+                                <FilterSizeOption>somthing</FilterSizeOption>
+                            </FilterSize>
+                    </Filter>
+                </FilterContainer>
+
                     <AddContainer>
                         <AmountContainer>
                             <Remove/>

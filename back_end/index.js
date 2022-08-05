@@ -5,7 +5,6 @@ require("express-async-errors");
 const helmet = require("helmet");
 const xss = require("xss-clean");
 const rateLimiter = require("express-rate-limit");
-const cors=require("cors");
 //express app
 const express = require("express");
 const app = express();
@@ -30,7 +29,6 @@ app.use(
         max:100,
     })
 );
-app.use(cors());
 app.use(express.json());
 app.use(helmet());
 app.use(xss());
@@ -51,7 +49,7 @@ app.use(errorHandlerMiddleware);
 
 
 //port 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 5000;
 
 
 

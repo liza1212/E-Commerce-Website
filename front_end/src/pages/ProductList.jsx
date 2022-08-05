@@ -5,9 +5,6 @@ import Navbar from "../components/Navbar"
 import Newsletter from "../components/Newsletter"
 import Products from "../components/Products"
 import { mobile } from "../responsive"
-import { useLocation } from 'react-router-dom';
-import {useState } from 'react';
-
 const Container= styled.div``
 
 const Title=styled.h1`
@@ -40,21 +37,6 @@ const Select= styled.select`
 const Option=styled.option``
 
 const ProductList = () => {
-  const location=useLocation();
-  const cat=(location.pathname.split("/")[2]);
-  //cat is for services
-  //filter is for the company name
-  const [filter, setfilter] = useState();
-
-  const handleFilters=(evnt)=>{
-    const val= evnt.target.value;
-    setfilter({
-        ...filter,
-        [evnt.target.name]: val
-    })
-  }
-
-  // console.log(filter);
   return (
     <Container>
         <Navbar/>
@@ -62,7 +44,7 @@ const ProductList = () => {
         <Title>SERVICES</Title>
         <FilterContainer>
           <Filter><FilterText>Select Service</FilterText>
-            <Select name="service" onChange={handleFilters}>
+            <Select>
               <Option disabled selected>
                 Mobile Services
               </Option>
@@ -71,25 +53,21 @@ const ProductList = () => {
               <Option>Digital Marketing</Option>
               <Option>Logo</Option>
               <Option>Website Services</Option>
-              <Option>Website</Option>
-              <Option>Development</Option>
-              <Option>Network Security</Option>
+              <Option>Engine Optimization</Option>
             </Select>
           </Filter>
-          <Filter><FilterText>Select Company</FilterText>
-            <Select name="company" onChange={handleFilters}>
-              <Option disabled selected>
-                Market Company
-              </Option>
-              <Option>Aurora</Option>
-              <Option>Apple</Option>
-              <Option>Orange</Option>
-              <Option>Dark chocolate</Option>
-              <Option>Coffee</Option>
+          <Filter><FilterText>Select type</FilterText>
+            <Select>
+              <Option>Local Business</Option>
+              <Option>Restaurant</Option>
+              <Option>Store Management</Option>
+              <Option>Appointments</Option>
+              <Option>E-commerce</Option>
+              <Option>Sell Products</Option>
             </Select>
           </Filter>
         </FilterContainer>
-        <Products cat={cat} filter={filter}/>
+        <Products/>
         <Newsletter/>
         <Footer/>
     </Container>
