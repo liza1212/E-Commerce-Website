@@ -6,6 +6,9 @@ import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import Newsletter from "../components/Newsletter"
 import { mobile } from "../responsive"
+import { useEffect, useState } from "react"
+import { addProduct } from "../redux/cartRedux"
+import { useDispatch } from "react-redux"
 const Container=styled.div`
 
 `
@@ -122,7 +125,14 @@ const Button=styled.button`
 
 
 const Product = () => {
-  return (
+    const [product, setProduct] = useState({});
+    const [quantity, setQuantity] = useState(1);
+
+    const dispatch = useDispatch();
+    const handleClick = ()=>{
+        dispatch(addProduct({ ...product,quantity,color,size}));
+    };
+    return (
     <Container>
         <Navbar/>
         <Announcements/>

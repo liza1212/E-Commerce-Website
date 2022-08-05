@@ -1,5 +1,6 @@
 
 import { Add, Remove } from "@material-ui/icons"
+import { useSelector } from "react-redux"
 import styled from "styled-components"
 import Announcements from "../components/Announcements"
 import Footer from "../components/Footer"
@@ -159,7 +160,8 @@ const SummaryButton=styled.button`
 
 
 const Cart = () => {
-  return (
+    const cart = useSelector(state=>state.cart);
+    return (
     <Container>
         <Navbar/>
         <Announcements/>
@@ -178,51 +180,32 @@ const Cart = () => {
             </Top>
             <Bottom>
                 <Info>
-                    <Product>
+{                    {cart.products.map((product)=>(<Product>
                         <ProductInfo>
                             <ProductImg src="https://static.vecteezy.com/system/resources/previews/009/338/565/non_2x/natural-luxury-abstract-fluid-art-painting-in-alcohol-ink-technique-tender-and-dreamy-wallpaper-mixture-of-colors-creating-transparent-waves-and-golden-swirls-for-posters-other-printed-materials-free-png.png"/>
                             <Details>
-                                <ProductName><b>Product:</b>SOMETHING</ProductName>
-                                <ProductID><b>ID:</b>1234</ProductID>
-                                <ProductColor color="black"/>
-                                <ProductType><b>Type:</b>PNG</ProductType>
+                                <ProductName><b>Product:</b>{product.title}</ProductName>
+                                <ProductID><b>ID:</b>{product.id}</ProductID>
+                                // <ProductColor color="black"/>
+                                <ProductType><b>Type:</b>{product.img}</ProductType>
                             </Details>
                         </ProductInfo>
                         <PriceDetail>
                             <ProductAmountContainer>
                                 <Add/>
-                                <ProductAmount>2</ProductAmount>
+                                <ProductAmount>{product.quantity}</ProductAmount>
                                 <Remove/>
                             </ProductAmountContainer>
-                            <ProductPrice>Rs. 3000</ProductPrice>
+                            <ProductPrice>{product.price * product.quantity }</ProductPrice>
                         </PriceDetail>
-                    </Product>
+                    </Product>))}
                     <Hr/>
-                    <Product>
-                        <ProductInfo>
-                            <ProductImg src="https://static.vecteezy.com/system/resources/previews/009/338/565/non_2x/natural-luxury-abstract-fluid-art-painting-in-alcohol-ink-technique-tender-and-dreamy-wallpaper-mixture-of-colors-creating-transparent-waves-and-golden-swirls-for-posters-other-printed-materials-free-png.png"/>
-                            <Details>
-                                <ProductName><b>Product:</b>SOMETHING</ProductName>
-                                <ProductID><b>ID:</b>1234</ProductID>
-                                <ProductColor color="black"/>
-                                <ProductType><b>Type:</b>PNG</ProductType>
-                            </Details>
-                        </ProductInfo>
-                        <PriceDetail>
-                            <ProductAmountContainer>
-                                <Add/>
-                                <ProductAmount>2</ProductAmount>
-                                <Remove/>
-                            </ProductAmountContainer>
-                            <ProductPrice>Rs. 3000</ProductPrice>
-                        </PriceDetail>
-                    </Product>
                 </Info>
                 <Summary>
                     <SummaryTitle>ORDER SUMMARY</SummaryTitle>
                         <SummaryItem >
                             <SummaryItemText>Subtotal</SummaryItemText>
-                            <SummaryItemText>Rs. 3000</SummaryItemText>
+                            <SummaryItemText>{cart.total}</SummaryItemText>
                         </SummaryItem>
                         <SummaryItem>
                             <SummaryItemText>Estimated Shipping:</SummaryItemText>
@@ -234,7 +217,7 @@ const Cart = () => {
                         </SummaryItem>
                         <SummaryItem  type="total">
                             <SummaryItemText>Total</SummaryItemText>
-                            <SummaryItemText>Rs. 3000</SummaryItemText>
+                            <SummaryItemText>{cart.total}</SummaryItemText>
                         </SummaryItem>
                         <SummaryButton>CHECKOUT</SummaryButton>
                 </Summary>
