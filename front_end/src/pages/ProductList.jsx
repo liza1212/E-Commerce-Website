@@ -43,7 +43,7 @@ const ProductList = () => {
   const location=useLocation();
   // console.log(location);
   const cat=(location.pathname.split("/")[2]);
-  console.log(cat); //not service?
+  // console.log(cat); //not service?
   //cat is for services
   //filter is for the company name
   const [filter, setfilter] = useState({});
@@ -56,7 +56,7 @@ const ProductList = () => {
     })
   }
 
-  console.log(filter);
+  // console.log(filter);
   return (
     <Container>
         <Navbar/>

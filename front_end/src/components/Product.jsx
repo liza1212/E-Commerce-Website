@@ -78,6 +78,7 @@ const Product = ({item}) => {
           {item.desc}
         </Title>
         <Icon>
+
           <Add />
         </Icon>
         <Icon>
@@ -85,6 +86,7 @@ const Product = ({item}) => {
               <SearchOutlined/>
           </Link>
           
+
         </Icon>
         <Icon>
           <FavoriteBorderOutlined/>

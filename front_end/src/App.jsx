@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Cart from "./pages/Cart";
 import React from "react";
 import ReactDOM from "react-dom";
+import { useSelector } from "react-redux";
 
 
 import {
@@ -16,7 +17,7 @@ import {
 } from "react-router-dom"
 
 const App = () => {
-  const user=true;
+  const user= useSelector((state) => state.user.currentUser );
   return (
     <Router>
       <Routes>
