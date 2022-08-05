@@ -1,5 +1,8 @@
 import styled from "styled-components"
 import { mobile } from "../responsive"
+import { register } from "../redux/apiCalls"
+import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 const Container=styled.div`
     width: 100vw;
     height: 100vh;
@@ -54,22 +57,37 @@ const Button=styled.button`
 
 
 const Register = () => {
+    const [name, setName] = useState("");
+    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
+    const [contact, setContact] = useState("");
+    const dispatch = useDispatch();
+
+    const handleClick = (event)=>{
+        event.preventDefault();
+        const user = {name, password, email, contact};
+        JSON.stringify(user);
+        console.log(user)
+        register(dispatch, user);
+    };
+
   return (
     <Container>
         <Wrapper>
             <Title>CREATE AN ACCOUNT</Title>
             <Form>
-                <Input placeholder="First name"/>
-                <Input placeholder="Last name"/>
-                <Input placeholder="Username"/>
-                <Input placeholder="Email"/>
-                <Input placeholder="Password"/>
-                <Input placeholder="Confirm Password"/>
+                {/* <Input placeholder="First name"/>
+                <Input placeholder="Last name"/> */}
+                <Input placeholder="Username" onChange={(event)=>setName(event.target.value)}/>
+                <Input placeholder="Email" onChange={(event)=>setEmail(event.target.value)}/>
+                <Input placeholder="Password" onChange={(event)=>setPassword(event.target.value)}/>
+                <Input placeholder="Contact" onChange={(event)=>setContact(event.target.value)}/>
+                {/* <Input placeholder="Confirm Password"/> */}
                 <Agreement>
                     By creating an account, I consent to the processing of my personal data in 
                     accordance with the <b>PRIVACY POLICY</b>
                 </Agreement>
-                <Button>CREATE</Button>
+                <Button onClick={handleClick}>CREATE</Button>
             </Form>
         </Wrapper>
     </Container>

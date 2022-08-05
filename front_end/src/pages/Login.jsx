@@ -61,14 +61,16 @@ const Link=styled.a`
 `
 
 const Login = () => {
-    const [Username, setUsername] = useState("");
-    const [Password, setPassword] = useState("");
+    const [name, setName] = useState("");
+    const [password, setPassword] = useState("");
     const dispatch = useDispatch();
-    const { isFetching, error } = useSelector((state)=>state.user);
 
     const handleClick = (event)=>{
         event.preventDefault();
-        login(dispatch, {Username,Password});
+        const user = {name,password};
+        JSON.stringify(user);
+        // console.log(user);
+        login(dispatch, user);
     };
 
     return (
@@ -76,7 +78,7 @@ const Login = () => {
         <Wrapper>
             <Title>SIGN IN</Title>
             <Form>
-                <Input placeholder="Username" onChange={(event)=>setUsername(event.target.value)}/>
+                <Input placeholder="Username" onChange={(event)=>setName(event.target.value)}/>
                 <Input placeholder="Password" onChange={(event)=>setPassword(event.target.value)}/>
                 <Button onClick={handleClick}>LOG IN</Button>
                 <Link>Forgot password?</Link>

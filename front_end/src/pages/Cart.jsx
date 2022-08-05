@@ -5,8 +5,9 @@ import Announcements from "../components/Announcements"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import { mobile } from "../responsive"
+import { useSelector } from "react-redux";
 
-const Container=styled.div``
+const Container = styled.div``;
 
 const Wrapper=styled.div`
     padding: 20px;
@@ -81,7 +82,7 @@ const Details=styled.div`
 
 const ProductName=styled.span``;
 
-const ProductID=styled.span``;
+const ProductId=styled.span``;
 
 const PriceDetail=styled.div`
     flex:1;
@@ -97,12 +98,26 @@ const ProductAmountContainer=styled.div`
     margin-bottom: 20px;
 `;
 
+const ProductDetail = styled.div`
+  flex: 2;
+  display: flex;
+`;
+
 const ProductAmount=styled.div`
     font-size: 24px;
     margin: 5px;
     ${mobile({margin: "5px 15px"})}
 `;
 
+const Image = styled.img`
+  width: 200px;
+`;
+
+const ProductPrice = styled.div`
+  font-size: 30px;
+  font-weight: 200;
+  ${mobile({ marginBottom: "20px" })}
+`;
 
 const Hr= styled.hr`
     background-color: #eee;
@@ -111,6 +126,7 @@ const Hr= styled.hr`
 `
 
 const Cart = () => {
+  const cart = useSelector((state) => state.cart);
   return (
     <Container>
         <Navbar/>
@@ -130,39 +146,32 @@ const Cart = () => {
             </Top>
             <Bottom>
                 <Info>
-                    <Product>
-                        <ProductInfo>
-                            <ProductImg src="https://static.vecteezy.com/system/resources/previews/009/338/565/non_2x/natural-luxury-abstract-fluid-art-painting-in-alcohol-ink-technique-tender-and-dreamy-wallpaper-mixture-of-colors-creating-transparent-waves-and-golden-swirls-for-posters-other-printed-materials-free-png.png"/>
-                            <Details>
-                                <ProductName><b>Product:</b>SOMETHING</ProductName>
-                                <ProductID><b>ID:</b>1234</ProductID>
-                            </Details>
-                        </ProductInfo>
-                        <PriceDetail>
-                            <ProductAmountContainer>
-                                <Add/>
-                                <ProductAmount>2</ProductAmount>
-                                <Remove/>
-                            </ProductAmountContainer>
-                        </PriceDetail>
-                    </Product>
+                {cart.products.map((product) => (
+                <Product>
+                    <ProductDetail>
+                    <Image src={product.img} />
+                    <Details>
+                        <ProductName>
+                        <b>Product:</b> {product.title}
+                        </ProductName>
+                        <ProductId>
+                        <b>ID:</b> {product._id}
+                        </ProductId>
+                    </Details>
+                    </ProductDetail>
+                    <PriceDetail>
+                    <ProductAmountContainer>
+                        <Add />
+                        <ProductAmount>{product.quantity}</ProductAmount>
+                        <Remove />
+                    </ProductAmountContainer>
+                    <ProductPrice>
+                        $ {product.price * product.quantity}
+                    </ProductPrice>
+                    </PriceDetail>
+                </Product>
+                ))}
                     <Hr/>
-                    <Product>
-                        <ProductInfo>
-                            <ProductImg src="https://static.vecteezy.com/system/resources/previews/009/338/565/non_2x/natural-luxury-abstract-fluid-art-painting-in-alcohol-ink-technique-tender-and-dreamy-wallpaper-mixture-of-colors-creating-transparent-waves-and-golden-swirls-for-posters-other-printed-materials-free-png.png"/>
-                            <Details>
-                                <ProductName><b>Product:</b>SOMETHING</ProductName>
-                                <ProductID><b>ID:</b>1234</ProductID>
-                            </Details>
-                        </ProductInfo>
-                        <PriceDetail>
-                            <ProductAmountContainer>
-                                <Add/>
-                                <ProductAmount>2</ProductAmount>
-                                <Remove/>
-                            </ProductAmountContainer>
-                        </PriceDetail>
-                    </Product>
                 </Info>
             </Bottom>
         </Wrapper>
