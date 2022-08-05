@@ -81,7 +81,7 @@ const Navbar = () => {
     <Container>
         <Wrapper>
             <Left>
-                <Logo>AURORA</Logo>
+                <Logo>LATERAL_IT</Logo>
             </Left>
             <Middle>
                 <Language>EN</Language>

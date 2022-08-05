@@ -85,7 +85,7 @@ const Footer = () => {
   return (
     <Container>
         <Left>
-            <Logo>AURORA</Logo>
+            <Logo>LATERAL_IT</Logo>
             <Description>
                  We provide all kinds of services like: website design, website development, logo designing, flash banner designing, e-com and dynamic websites, advertising websites, E-Brochures and email flyer designing, search engine optimization, search engine marketing and email solutions.
 

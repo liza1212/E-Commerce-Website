@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import styled from "styled-components"
-import { popularSkincare } from "../data"
 import Product from "./Product"
 import axios from "axios"
 
@@ -27,6 +26,7 @@ const Products = ({cat, filter}) => {
                   ?`http://localhost:8000/api/products?category=${cat}`
                 :"http://localhost:8000/api/products"
                 );  
+        
                 setproduct(res.data);
                 console.log(res.data);
                 console.log("Reached here!");
@@ -48,11 +48,15 @@ const Products = ({cat, filter}) => {
         )
     }, [product,cat,filter])
 
+
+
   return (
     <Container>
-        {filteredProducts.map((item)=>(
+        {cat?filteredProducts.map((item)=>(
             <Product item={item} key={item.id}/>
-        ))}
+        )): product
+        .slice(0,8)
+        .map((item)=> <Product item={item} key={item.id}/>)}
     </Container>
   )
 }
