@@ -6,10 +6,7 @@ import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import { mobile } from "../responsive"
 
-const Container=styled.div`
-    
-
-`
+const Container=styled.div``
 
 const Wrapper=styled.div`
     padding: 20px;
@@ -34,6 +31,10 @@ const TopButton=styled.button`
     border: ${props=>props.type==="filled" && "none"};
     background-color: ${props=>props.type==="filled"? "#04063c":"transparent"};
     color: ${props=>props.type==="filled" && "white"};
+    transition: all 0.5s ease;
+    &:hover{
+        transform:scale(1.2);
+    }
 `
 
 const TopTexts=styled.div`
@@ -82,16 +83,6 @@ const ProductName=styled.span``;
 
 const ProductID=styled.span``;
 
-const ProductColor=styled.div`
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: ${props=>props.color};
-
-`;
-
-const ProductType=styled.span``;
-
 const PriceDetail=styled.div`
     flex:1;
     display: flex;
@@ -112,51 +103,12 @@ const ProductAmount=styled.div`
     ${mobile({margin: "5px 15px"})}
 `;
 
-const ProductPrice=styled.div`
-    font-size: 30px;
-    font-weight: 200;
-    ${mobile({marginBottom: "20px"})}
-`;
 
 const Hr= styled.hr`
     background-color: #eee;
     border: none;
     height: 3px;
 `
-
-const Summary=styled.div`
-    flex:1;
-    background-color: #04063c;
-    color: white;
-    padding: 20px;
-    border: 0.5px solid lightblue;
-    border-radius: 10px;
-    height: 50vh;
-`
-
-const SummaryTitle=styled.h1`
-    font-weight: 200;
-`
-
-const SummaryItem=styled.div`
-    margin: 30px 0px;
-    display: flex;
-    justify-content: space-between;
-    font-weight: ${props=>props.type==="total" && "500"};
-    font-size: ${props=>props.type==="total" && "24px"};
-`
-
-
-const SummaryItemText=styled.div``
-
-const SummaryButton=styled.button`
-    width:100%;
-    padding: 10px;
-    background-color: white;
-    color: #04063c;
-    font-weight: 600;
-`
-
 
 const Cart = () => {
   return (
@@ -174,7 +126,7 @@ const Cart = () => {
                     <TopText>Wishlist</TopText>
                 </TopTexts>
                 
-                <TopButton type="filled">Check-out now</TopButton>
+                <TopButton type="filled">Checkout now</TopButton>
             </Top>
             <Bottom>
                 <Info>
@@ -184,8 +136,6 @@ const Cart = () => {
                             <Details>
                                 <ProductName><b>Product:</b>SOMETHING</ProductName>
                                 <ProductID><b>ID:</b>1234</ProductID>
-                                <ProductColor color="black"/>
-                                <ProductType><b>Type:</b>PNG</ProductType>
                             </Details>
                         </ProductInfo>
                         <PriceDetail>
@@ -194,7 +144,6 @@ const Cart = () => {
                                 <ProductAmount>2</ProductAmount>
                                 <Remove/>
                             </ProductAmountContainer>
-                            <ProductPrice>Rs. 3000</ProductPrice>
                         </PriceDetail>
                     </Product>
                     <Hr/>
@@ -204,8 +153,6 @@ const Cart = () => {
                             <Details>
                                 <ProductName><b>Product:</b>SOMETHING</ProductName>
                                 <ProductID><b>ID:</b>1234</ProductID>
-                                <ProductColor color="black"/>
-                                <ProductType><b>Type:</b>PNG</ProductType>
                             </Details>
                         </ProductInfo>
                         <PriceDetail>
@@ -214,30 +161,9 @@ const Cart = () => {
                                 <ProductAmount>2</ProductAmount>
                                 <Remove/>
                             </ProductAmountContainer>
-                            <ProductPrice>Rs. 3000</ProductPrice>
                         </PriceDetail>
                     </Product>
                 </Info>
-                <Summary>
-                    <SummaryTitle>ORDER SUMMARY</SummaryTitle>
-                        <SummaryItem >
-                            <SummaryItemText>Subtotal</SummaryItemText>
-                            <SummaryItemText>Rs. 3000</SummaryItemText>
-                        </SummaryItem>
-                        <SummaryItem>
-                            <SummaryItemText>Estimated Shipping:</SummaryItemText>
-                            <SummaryItemText>Rs. 3000</SummaryItemText>
-                        </SummaryItem>
-                        <SummaryItem>
-                            <SummaryItemText>Shipping Discount</SummaryItemText>
-                            <SummaryItemText>Rs. -3000</SummaryItemText>
-                        </SummaryItem>
-                        <SummaryItem  type="total">
-                            <SummaryItemText>Total</SummaryItemText>
-                            <SummaryItemText>Rs. 3000</SummaryItemText>
-                        </SummaryItem>
-                        <SummaryButton>CHECKOUT</SummaryButton>
-                </Summary>
             </Bottom>
         </Wrapper>
         <Footer/>

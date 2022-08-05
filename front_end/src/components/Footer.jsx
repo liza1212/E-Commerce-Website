@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Mail, MailOutline, Phone, Pinterest, Room, Twitter } from "@material-ui/icons";
+import { Facebook, Instagram, MailOutline, Phone, Pinterest, Room, Twitter } from "@material-ui/icons";
 import styled from "styled-components"
 import {mobile} from "../responsive"
 
@@ -122,7 +122,7 @@ const Footer = () => {
         </Middle>
         <Right>
             <Title>Contact</Title>
-            <ContactItem><Room style={{marginRight:"10px"}}/> City, Country </ContactItem>
+            <ContactItem><Room style={{marginRight:"10px"}}/> Kathmandu, Nepal </ContactItem>
             <ContactItem><Phone style={{marginRight:"10px"}}/>Contact Number</ContactItem>
             <ContactItem><MailOutline style={{marginRight:"10px"}}/> Company email</ContactItem>
             <Payment src="https://esewa.com.np/common/images/esewa-icon-large.png"/>
