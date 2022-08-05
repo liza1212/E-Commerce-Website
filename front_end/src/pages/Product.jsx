@@ -6,6 +6,11 @@ import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import Newsletter from "../components/Newsletter"
 import { mobile } from "../responsive"
+import { useLocation } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { publicRequest } from "../requestMethods"
+import { addProduct } from "../redux/cartRedux"
+import { useDispatch } from "react-redux"
 
 const Container=styled.div`
 
@@ -85,26 +90,55 @@ const Button=styled.button`
 `
 
 const Product = () => {
-  return (
+    const location = useLocation();
+    const id = location.pathname.split("/")[2];
+    const [product, setproduct] = useState({});
+    const [quantity, setquantity] = useState(1);
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        const getProduct = async()=>{
+            try{
+                const res = await publicRequest.get("/products/find"+id);
+                setproduct(res.data);
+            } catch {}
+        };
+        getProduct();
+    },[id]);
+
+    const handleQuantity = (type) => {
+        if( type==="dec"){
+            quantity > 1 && setquantity(quantity -1 );
+        }else {
+            setquantity(quantity +1);
+        }
+    };
+
+    const handleClick = () => {
+        dispatch(
+            addProduct({...product,quantity})
+        );
+    };
+
+    return (
     <Container>
         <Navbar/>
         <Announcements/>
         <Wrapper>
             <ImgContainer>
-                <Image src="https://static.vecteezy.com/system/resources/previews/001/191/986/non_2x/circle-logo-png.png"></Image>
+                <Image src={product.img} />
             </ImgContainer>
             <InfoContainer>
-                <Title>LOGO DESIGNS</Title>
-                <Desc>Why is a logo important? Because it grabs attention, makes a strong first impression, is the foundation of your brand identity, is memorable, separates you from competition, fosters brand loyalty, and is expected by your audience. 
-                    With aurora building a logo is just one step away.
+                <Title>{product.title}</Title>
+                <Desc>{product.desc}
                 </Desc>
                     <AddContainer>
                         <AmountContainer>
-                            <Remove/>
-                            <Amount>1</Amount>
-                            <Add/>
+                        <Remove onClick={()=> handleQuantity("dec")}/>
+                        <Amount>{quantity}</Amount>
+                        <Add onClick={()=> handleQuantity("inc")} />
                         </AmountContainer>
-                        <Button>ADD TO CART</Button>
+                        <Button onClick={handleClick}>ADD TO CART</Button>
                     </AddContainer>
 
             </InfoContainer>
