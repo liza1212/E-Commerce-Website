@@ -53,6 +53,10 @@ const Button=styled.button`
     margin-bottom: 10px;
 `
 
+const Error=styled.span`
+    color:red;
+`
+
 const Link=styled.a`
     margin: 15px 0px;
     font-size: 12px;
@@ -61,15 +65,19 @@ const Link=styled.a`
 `
 
 const Login = () => {
-    const [name, setName] = useState("");
+
+    const {isFetching, error}=useSelector((state)=>state.user);
+
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
 
     const handleClick = (event)=>{
         event.preventDefault();
-        const user = {name,password};
-        JSON.stringify(user);
+        const user = {email,password};
         // console.log(user);
+        JSON.stringify(user);
+        // console.log(user1);
         login(dispatch, user);
     };
 
@@ -78,9 +86,10 @@ const Login = () => {
         <Wrapper>
             <Title>SIGN IN</Title>
             <Form>
-                <Input placeholder="Username" onChange={(event)=>setName(event.target.value)}/>
-                <Input placeholder="Password" onChange={(event)=>setPassword(event.target.value)}/>
-                <Button onClick={handleClick}>LOG IN</Button>
+                <Input placeholder="Email" onChange={(event)=>setEmail(event.target.value)}/>
+                <Input placeholder="Password" type="password" onChange={(event)=>setPassword(event.target.value)}/>
+                <Button onClick={handleClick} disabled={isFetching}>LOG IN</Button>
+                {error && <Error>Something went wrong...</Error>}
                 <Link>Forgot password?</Link>
                 <Link>Create a new account.</Link>
             </Form>

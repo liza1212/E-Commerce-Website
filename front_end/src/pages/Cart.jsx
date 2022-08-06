@@ -6,6 +6,7 @@ import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import { mobile } from "../responsive"
 import { useSelector } from "react-redux";
+import { Link } from 'react-router-dom'
 
 const Container = styled.div``;
 
@@ -80,7 +81,9 @@ const Details=styled.div`
     justify-content: space-around;
 `;
 
-const ProductName=styled.span``;
+const ProductName=styled.span`
+    font-size: 25px;
+`;
 
 const ProductId=styled.span``;
 
@@ -113,16 +116,21 @@ const Image = styled.img`
   width: 200px;
 `;
 
-const ProductPrice = styled.div`
-  font-size: 30px;
-  font-weight: 200;
-  ${mobile({ marginBottom: "20px" })}
-`;
 
 const Hr= styled.hr`
     background-color: #eee;
     border: none;
     height: 3px;
+`
+
+const ProductCompany=styled.div`
+    font-size: 20px;
+  font-weight: 100;
+`
+
+const ProductDesc=styled.div`
+    font-size: 15px;
+    font-weight: 200;
 `
 
 const Cart = () => {
@@ -136,13 +144,13 @@ const Cart = () => {
                 Your services
             </Title>
             <Top>
-                <TopButton>Add more services</TopButton>
+                <TopButton><Link to={`/products/SERVICES`} style={{ textDecoration: "none"}} >Add more services</Link></TopButton>
                 <TopTexts>
                     <TopText>Shopping Bag</TopText>
                     <TopText>Wishlist</TopText>
                 </TopTexts>
                 
-                <TopButton type="filled">Checkout now</TopButton>
+                <TopButton type="filled">SUBMIT</TopButton>
             </Top>
             <Bottom>
                 <Info>
@@ -154,6 +162,12 @@ const Cart = () => {
                         <ProductName>
                         <b>Product:</b> {product.title}
                         </ProductName>
+                        <ProductCompany>
+                            <b>Company Name:</b>{product.company}
+                        </ProductCompany>
+                        <ProductDesc>
+                            <b>Description:</b>{product.desc}
+                        </ProductDesc>
                         <ProductId>
                         <b>ID:</b> {product._id}
                         </ProductId>
@@ -165,9 +179,7 @@ const Cart = () => {
                         <ProductAmount>{product.quantity}</ProductAmount>
                         <Remove />
                     </ProductAmountContainer>
-                    <ProductPrice>
-                        $ {product.price * product.quantity}
-                    </ProductPrice>
+
                     </PriceDetail>
                 </Product>
                 ))}

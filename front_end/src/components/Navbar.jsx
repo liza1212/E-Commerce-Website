@@ -24,6 +24,7 @@ const Left=styled.div`
     flex:1;
     align-items: center;
     justify-content: center;
+    cursor:pointer;
 `
 
 const Middle=styled.div`
@@ -85,7 +86,7 @@ const Navbar = () => {
     <Container>
         <Wrapper>
             <Left>
-                <Logo>LATERAL_IT</Logo>
+                <Link to={`/`} style={{color:"#04063c", textDecoration: "none"}}><Logo>LATERAL_IT</Logo></Link>
             </Left>
             <Middle>
                 <Language>EN</Language>

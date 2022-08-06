@@ -78,18 +78,9 @@ const Product = ({item}) => {
           {item.desc}
         </Title>
         <Icon>
-
-          <Add />
-        </Icon>
-        <Icon>
           <Link to={`/product/${item._id}`} style={{color: "black", textDecoration: "none"}}>
               <SearchOutlined/>
           </Link>
-          
-
-        </Icon>
-        <Icon>
-          <FavoriteBorderOutlined/>
         </Icon>
       </Info>
     </Container>

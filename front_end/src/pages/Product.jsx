@@ -102,7 +102,7 @@ const Product = () => {
     useEffect(()=>{
         const getProduct = async()=>{
             try{
-                const res = await publicRequest.get("/products/find"+id);
+                const res = await publicRequest.get("/products/find/"+id);
                 setproduct(res.data);
             } catch {}
         };
@@ -121,6 +121,8 @@ const Product = () => {
         dispatch(
             addProduct({...product,quantity})
         );
+        // console.log(quantity);
+            // console.log({product});
     };
 
     return (

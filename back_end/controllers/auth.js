@@ -11,17 +11,18 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
     // const { email, password } = req.body;
+
     if( !req.body.email || !req.body.password )
     {
         throw new BadRequestError("Please provide email and password");
     }
-    const user = await User.findOne({email});
+    const user = await User.findOne({email:req.body.email});
     if(!user)
     {
         throw new UnauthenticatedError("Invalid Credentials!!!");
     }
 
-    const isPasswordCorrect = await user.comparePassword(password);
+    const isPasswordCorrect = await user.comparePassword(req.body.password);
     if (!isPasswordCorrect)
     {
         throw new UnauthenticatedError("Invalid Credentials!!!");
